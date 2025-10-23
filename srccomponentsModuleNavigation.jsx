@@ -1,42 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import * as FaIcons from 'react-icons/fa';
+// L'importation doit être ainsi pour fonctionner avec les noms de chaînes
+import * as FaIcons from 'react-icons/fa'; 
 import { navModules } from '../data/mockData';
 
 const ModuleNavigation = () => {
-  const OtacosLogo = () => (
-    <div className="flex items-center justify-center p-4 text-white">
-      <FaIcons.FaTaco className="text-otacos-accent text-3xl mr-2" />
-      <span className="text-xl font-bold">O'Tacos-CONNECT</span>
-    </div>
-  );
+  // ... (votre composant OtacosLogo)
 
   return (
-    <div className="w-64 bg-otacos-blue min-h-screen flex flex-col">
-      <OtacosLogo />
-      <nav className="flex-grow p-4 space-y-2">
+    // ...
         {navModules.map((item) => {
-          const IconComponent = FaIcons[item.icon];
+          // C'est ici que l'erreur se produit souvent si FaIcons n'est pas bien importé
+          const IconComponent = FaIcons[item.icon]; 
           return (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `flex items-center p-3 rounded-lg transition-colors duration-200 ${
-                  isActive
-                    ? 'bg-otacos-accent text-otacos-blue font-bold shadow-md'
-                    : 'text-gray-200 hover:bg-otacos-blue/50 hover:text-white'
-                }`
-              }
-            >
-              {IconComponent && <IconComponent className="w-5 h-5 mr-3" />}
-              {item.name}
-            </NavLink>
+            // ...
           );
         })}
-      </nav>
-    </div>
+    // ...
   );
 };
 
 export default ModuleNavigation;
+
